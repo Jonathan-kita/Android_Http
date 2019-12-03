@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Cadastro extends Activity {
  EditText edit_1,edit_2,edit_3;
+ ArrayList<String> valor = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,13 @@ public class Cadastro extends Activity {
         Locale mLocale = new Locale("pt", "BR");
         edit_2.addTextChangedListener(new Mask(edit_2, mLocale));
 
+        bdRanking task = new bdRanking(this);
+        try {
+            valor = task.execute("get_Valor_Criptomoeda").get();
+            edit_3.setText("Valor da Criptomoeda: "+valor.get(0).toString().replaceAll(" ",""));
+        }catch (Exception e){
+            System.out.println("Erro na CLasse Cadastro");
+        }
     }
 
     public void insertbd(View view) {

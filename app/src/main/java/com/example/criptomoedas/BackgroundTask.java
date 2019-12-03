@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class BackgroundTask extends AsyncTask<String,Void,Boolean> {
     AlertDialog alertDialog;
     Context ctx;
-    String localhost = "http://192.168.137.1:8080/" ;
+    String localhost = "192.168.137.1" ;
 
     BackgroundTask(Context ctx) {
         this.ctx = ctx;
@@ -36,7 +36,8 @@ public class BackgroundTask extends AsyncTask<String,Void,Boolean> {
 
     @Override
     protected Boolean doInBackground(String... params) {
-        String reg_url ="http://192.168.0.8/php_tcc/registro.php";
+        String reg_url ="http://"+localhost+"/php_tcc/registro.php";
+        System.out.println("Ver local host :"+reg_url);
 
         String method = params[0];
         boolean verificacao = false;

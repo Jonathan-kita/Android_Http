@@ -32,11 +32,12 @@ public class bdRanking extends AsyncTask<String,ArrayList,ArrayList> {
         this.ctx = ctx;
     }
     ArrayList<String> Dados = new ArrayList();
+   String localhost = "192.168.137.1";
 
     @Override
     protected ArrayList doInBackground(String... paramets) {
         if(paramets[0].equals("get_Nome_Lista")) {
-            String reg_Lista = "http://192.168.0.8/php_tcc/Lista.php";
+            String reg_Lista = "http://"+localhost+"/php_tcc/Lista.php";
 
             try {
                 URL url = new URL(reg_Lista);
@@ -64,31 +65,24 @@ public class bdRanking extends AsyncTask<String,ArrayList,ArrayList> {
             }
         }else if(paramets[0].equals("get_Valor_Criptomoeda")){
 
-            String reg_Lista1 = "http://192.168.0.8/php_tcc/Lista1.php";
-            String nome = paramets[1];
+            String reg_Lista1 = "http://"+localhost+"/php_tcc/Lista1.php";
+
 
             try {
                 URL url = new URL(reg_Lista1);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String data = URLEncoder.encode("nome", "UTF-8") + "=" + URLEncoder.encode(nome, "UTF-8") ;
-                bufferedWriter.write(data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "ISO-8859-1"));
                 String line = bufferedReader.readLine();
+
 
 
                 int parametro = 0;
                 String array[] = line.split(";");
                 while (parametro < array.length) {
                     Dados.add(array[parametro]);
+                    System.out.println("TESTE VALOR CRIPTOMOEDA :"+ Dados.get(parametro));
                     parametro++;
 
                 }
@@ -100,7 +94,7 @@ public class bdRanking extends AsyncTask<String,ArrayList,ArrayList> {
                 System.out.println("Erro1");
             }
 
-        }else if(paramets[0 ].equals("Lista_Empresa")){
+        }else if(paramets[0 ].equals("indefinido")){
 
             String reg_Lista = "http://192.168.0.106:8080/mysqlapp/php_tcc/Lista_Empresa.php";
 
