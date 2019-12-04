@@ -32,7 +32,7 @@ public class bdRanking extends AsyncTask<String,ArrayList,ArrayList> {
         this.ctx = ctx;
     }
     ArrayList<String> Dados = new ArrayList();
-   String localhost = "192.168.137.1";
+   String localhost = "172.20.10.2";
 
     @Override
     protected ArrayList doInBackground(String... paramets) {

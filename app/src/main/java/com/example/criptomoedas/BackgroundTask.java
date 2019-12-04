@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class BackgroundTask extends AsyncTask<String,Void,Boolean> {
     AlertDialog alertDialog;
     Context ctx;
-    String localhost = "192.168.137.1" ;
+    String localhost = "172.20.10.2" ;
 
     BackgroundTask(Context ctx) {
         this.ctx = ctx;
